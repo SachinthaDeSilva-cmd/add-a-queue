@@ -189,6 +189,114 @@ public class TrainStation extends Application {
             System.out.println((i+1) + " - " + train[i].getName());
         }
         //view queue gui part
+        Label label = new Label("Train Queue");
+        label.setFont(Font.font("Arial", FontWeight.BOLD, 18));///
+        label.setTextFill(Color.CADETBLUE);
+        label.setLayoutX(50);
+        label.setLayoutY(50);
+
+        VBox vBox = new VBox();
+        vBox.setLayoutX(50);
+        vBox.setLayoutY(70);
+
+        VBox vBox1 = new VBox();
+        vBox1.setLayoutX(200);
+        vBox1.setLayoutY(70);
+
+        for (int i=0; i<passengerQueueNew.getLast();i++){
+            Label label1 = new Label();
+            label1.setText(passengerQueueNew.getQueueArray()[i].getName());
+
+            if (i>21){
+                vBox1.getChildren().add(label1);
+            } else {
+                vBox.getChildren().add(label1);
+            }
+
+        }
+
+        Pane pane = new Pane();
+        pane.getChildren().addAll(label,vBox,vBox1);
+
+        Label label1 = new Label("Waiting Room");
+        label1.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        label1.setTextFill(Color.CADETBLUE);
+        label1.setLayoutX(50);
+        label1.setLayoutY(50);
+
+        VBox vBox2 = new VBox();
+        vBox2.setLayoutX(50);
+        vBox2.setLayoutY(70);
+
+        VBox vBox3 = new VBox();
+        vBox3.setLayoutX(200);
+        vBox3.setLayoutY(70);
+
+        for (int i=0;i<waitingRoomIndex;i++){
+            Label label2 = new Label();
+            label2.setText(waitingRoom[i].getName());
+
+            if (i>21){
+                vBox3.getChildren().add(label2);
+            } else {
+                vBox2.getChildren().add(label2);
+            }
+
+
+        }
+
+        Pane pane1 = new Pane();
+        pane1.getChildren().addAll(label1,vBox2,vBox3);
+
+        Label label2 = new Label("Train");
+        label2.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        label2.setTextFill(Color.CADETBLUE);
+        label2.setLayoutX(50);
+        label2.setLayoutY(50);
+
+        VBox vBox4 = new VBox();
+        vBox4.setLayoutX(50);
+        vBox4.setLayoutY(70);
+
+        VBox vBox5 = new VBox();
+        vBox5.setLayoutX(200);
+        vBox5.setLayoutY(70);
+
+
+        Button[] buttonArray = new Button[42];
+        for (int i=0;i<42;i++){
+            Button button = new Button((i+1) + " Empty");
+            button.setId(String.valueOf(i));
+            buttonArray[i] = button;
+
+            if (i>21){
+                vBox5.getChildren().add(button);
+            } else {
+                vBox4.getChildren().add(button);
+            }
+
+
+        }
+
+        for (int i=0; i<trainNext;i++){
+            buttonArray[Integer.valueOf(train[i].getSeat())-1].setText((train[i].getSeat()) + " " + train[i].getName());
+        }
+
+        Pane pane2 = new Pane();
+        pane2.getChildren().addAll(label2,vBox4,vBox5);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setLeft(pane1);
+        borderPane.setCenter(pane);
+        borderPane.setRight(pane2);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(borderPane, 1000, 1000));
+        stage.showAndWait();
+
+
+
+    }
 
 
 
